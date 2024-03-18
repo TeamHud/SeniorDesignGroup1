@@ -17,7 +17,6 @@ picam.configure(config)
 picam.options['quality']=5
 picam.start()
 #initilize picam and configure image capture settings
-
 def take_pic (continue_or_not = True):
 	if continue_or_not:
 		global timer_task
@@ -34,7 +33,7 @@ def take_pic (continue_or_not = True):
 		f=open('text.txt','w')
 		f.write(binascii.hexlify(content).decode())
 		f.close()
-#define the take picture system	
+#define the take_pic function for later use	
 try:
     time.sleep(.1)
     print("Press \033[1;32mEsc\033[0m to exit")
@@ -44,6 +43,7 @@ try:
         timer_task.start()
         if sys.stdin.read(1) == '\x1b':
             timer_task.cancel()
+#set task to run every 60 seconds and checks for break input		
 except:
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, old_settings)
 termios.tcsetattr(sys.stdin, termios.TCSADRAIN, old_settings)
