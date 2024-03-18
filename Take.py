@@ -9,11 +9,15 @@ from threading import Timer
 import time
 from picamera2 import Picamera2, Preview
 import binascii
+#Import used libraries
+
 picam = Picamera2()
 config = picam.create_preview_configuration(main={"size":(480,480)})
 picam.configure(config)
 picam.options['quality']=5
 picam.start()
+#initilize picam and configure image capture settings
+
 def take_pic (continue_or_not = True):
 	if continue_or_not:
 		global timer_task
@@ -30,7 +34,7 @@ def take_pic (continue_or_not = True):
 		f=open('text.txt','w')
 		f.write(binascii.hexlify(content).decode())
 		f.close()
-	
+#define the take picture system	
 try:
     time.sleep(.1)
     print("Press \033[1;32mEsc\033[0m to exit")
